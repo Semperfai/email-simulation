@@ -57,7 +57,7 @@
       <div id="SideMenu" class="side-menu">
         <div
           @click="newMessageOpen = !newMessageOpen"
-          class="flex items-center justify-center bg-sky-200 w-36 h-5 mt-2 rounded-2xl ml-2 p-3 md:p-5 cursor-pointer"
+          class="flex items-center justify-center bg-sky-200 w-36 h-5 mt-2 rounded-2xl ml-2 p-4 md:p-6 cursor-pointer"
         >
           <pencil-outline-icon :size="25" class="mr-4" />
           <span class="text-sm">Compose</span>
