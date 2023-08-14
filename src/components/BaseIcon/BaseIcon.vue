@@ -3,16 +3,16 @@
     <div
       class="flex items-center justify-center rounded-full cursor-pointer w-10 h-10 transition-all duration-300 ease-in-out"
       :class="[hoverColor]"
-      :data-tooltip-target="`tooltip-no-arrow-${iconString}`"
+      :id="`tooltip-trigger-${iconString}`"
       data-tooltip-placement="bottom"
     >
       <component :is="icon" :size="iconSize" :fillColor="iconColor" />
     </div>
 
     <div
-      :id="`tooltip-no-arrow-${iconString}`"
+      :id="`tooltip-content-${iconString}`"
       role="tooltip"
-      class="inline-block absolute invisible text-xs z-10 py-1 px-2 font-medium text-white rounded-sm shadow-sm opacity-0 tooltip dark:bg-gray-600 delay-150"
+      class="inline-block absolute invisible text-xs z-10 py-1 px-2 font-medium text-white rounded-sm shadow-sm opacity-0 tooltip bg-gray-600 delay-150"
     >
       {{ text }}
     </div>
@@ -28,6 +28,8 @@ import CogOutlineIcon from 'vue-material-design-icons/CogOutline.vue'
 import AppsIcon from 'vue-material-design-icons/Apps.vue'
 import ArrowLeftIcon from 'vue-material-design-icons/ArrowLeft.vue'
 import TrashCanOutlineIcon from 'vue-material-design-icons/TrashCanOutline.vue'
+import { onMounted } from 'vue'
+import { Tooltip, type TooltipOptions } from 'flowbite'
 import { type IconProps } from './types'
 import { type Component, shallowRef } from 'vue'
 
@@ -66,4 +68,22 @@ if (iconString === 'back') {
 if (iconString === 'trash') {
   icon.value = TrashCanOutlineIcon
 }
+
+onMounted(() => {
+  // set the tooltip content element
+  const $targetEl = document.getElementById(`tooltip-content-${iconString}`)
+
+  // set the element that trigger the tooltip using hover or click
+  const $triggerEl = document.getElementById(`tooltip-trigger-${iconString}`)
+
+  // options with default values
+  const options: TooltipOptions = {
+    placement: 'top',
+    triggerType: 'hover'
+  }
+
+  if ($targetEl) {
+    new Tooltip($targetEl, $triggerEl, options)
+  }
+})
 </script>

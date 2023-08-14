@@ -11,7 +11,7 @@
           class="-ml-2 mr-2"
         ></base-icon>
 
-        <img width="70" src="../../../public/imgs/email-logo.png" alt="logo" />
+        <img width="70" src="imgs/email-logo.png" alt="logo" />
       </div>
     </div>
   </div>
