@@ -13,7 +13,16 @@
         <div class="text-xs text-gray-500">1-50 of 153</div>
       </div>
     </div>
+    <div>
+      <message-row
+        from="testmail@mail.com"
+        subject="Test 1 row rwow oor"
+        body="Body of message lalalalalal"
+      />
+    </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import MessageRow from '@/components/MessageRow/MessageRow.vue'
+</script>
