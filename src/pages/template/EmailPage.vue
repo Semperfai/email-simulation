@@ -12,8 +12,10 @@
         />
         <img width="70" class="md:w-[70px] w-[40px]" src="imgs/email-logo.png" alt="logo" />
       </div>
-      <div class="flex w-full justify-between">
-        <div class="input-width w-full bg-gray-200 flex items-center p-1 px-2 rounded-lg">
+      <div class="flex w-full md:justify-between justify-center ml-4">
+        <div
+          class="input-width md:w-full w-[70%] bg-gray-200 flex items-center p-1 px-2 rounded-lg"
+        >
           <base-icon
             iconString="magnify"
             iconColor="#636363"
@@ -52,7 +54,8 @@
     <div class="flex w-full justify-between">
       <div id="SideMenu" class="side-menu">
         <div
-          class="flex items-center justify-center bg-sky-200 w-36 h-8 mt-2 rounded-2xl ml-2 p-7 cursor-pointer"
+          @click="newMessageOpen = true"
+          class="flex items-center justify-center bg-sky-200 w-36 h-5 mt-2 rounded-2xl ml-2 p-5 md:p-7 cursor-pointer"
         >
           <pencil-outline-icon :size="25" class="mr-4" />
           <span class="text-sm">Compose</span>
@@ -109,6 +112,54 @@
         <div class="w-6 h-6 flex justify-center mb-7">
           <img class="object-contain cursor-pointer" src="imgs/keep.png" alt="keep" />
         </div>
+        <div class="w-6 flex mb-7 border border-gray-300" />
+
+        <div class="w-6 h-6 flex justify-center mb-7">
+          <plus-icon />
+        </div>
+      </div>
+    </div>
+
+    <div
+      v-if="newMessageOpen"
+      id="NewMessageSection"
+      class="md:h-[560px] md:w-[550px] h-[400px] w-[280px] overflow-hidden absolute bottom-5 right-0 mr-20 rounded-t-lg shadow-2xl bg-white"
+    >
+      <div
+        class="flex items-center justify-between rounded-t-lg w-full text-sm px-3.5 py-2.5 bg-gray-200"
+      >
+        <h2>New message</h2>
+        <close-icon @click="newMessageOpen = false" class="cursor-pointer" :size="19" />
+      </div>
+      <div class="relative flex items-center px-3.5 py-2">
+        <p class="text-sm text-gray-700">To:</p>
+        <input
+          class="w-full h-6 border-transparent border-none focus:ring-0 outline-none"
+          type="text"
+        />
+        <div class="absolute border-b w-[calc(100%-30px)] bottom-0" />
+      </div>
+      <div class="relative flex items-center px-3.5 py-2">
+        <p class="text-sm text-gray-700">Subject:</p>
+        <input
+          class="w-full h-6 border-transparent border-none focus:ring-0 outline-none"
+          type="text"
+        />
+        <div class="absolute border-b w-[calc(100%-30px)] bottom-0" />
+      </div>
+      <div class="m-1">
+        <textarea
+          style="resize: none"
+          class="w-full border-transparent border-none focus:ring-0 outline-none"
+          rows="14"
+        ></textarea>
+      </div>
+      <div class="p-4 mt-5">
+        <button
+          class="bg-blue-700 hover:bg-blue-600 text-white text-sm font-bold py-2 px-4 rounded-full"
+        >
+          Send message
+        </button>
       </div>
     </div>
   </div>
@@ -125,6 +176,9 @@ import PlusIcon from 'vue-material-design-icons/Plus.vue'
 import CloseIcon from 'vue-material-design-icons/Close.vue'
 import BaseIcon from '@/components/BaseIcon/BaseIcon.vue'
 import BaseProfile from '@/components/BaseProfile/BaseProfile.vue'
+import { ref } from 'vue'
+
+const newMessageOpen = ref<boolean>(false)
 </script>
 <style lang="scss">
 #EmailPage {
@@ -149,11 +203,5 @@ import BaseProfile from '@/components/BaseProfile/BaseProfile.vue'
   .side-menu-item {
     width: 80%;
   }
-}
-
-#NewMessageSection {
-  overflow: hidden;
-  width: 560px;
-  height: 570px;
 }
 </style>
