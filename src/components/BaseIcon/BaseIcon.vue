@@ -1,13 +1,14 @@
 <template>
-  <div id="BaseIcon">
+  <div id="BaseIcon" v-if="iconString">
     <div
-      class="flex items-center justify-center rounded-full cursor-pointer w-10 h-10 transition-all duration-200 ease-in"
-      :class="hoverColor"
+      class="flex items-center justify-center rounded-full cursor-pointer w-10 h-10 transition-all duration-300 ease-in-out"
+      :class="[hoverColor]"
       :data-tooltip-target="`tooltip-no-arrow-${iconString}`"
       data-tooltip-placement="bottom"
     >
       <component :is="icon" :size="iconSize" :fillColor="iconColor" />
     </div>
+
     <div
       :id="`tooltip-no-arrow-${iconString}`"
       role="tooltip"
@@ -28,11 +29,11 @@ import AppsIcon from 'vue-material-design-icons/Apps.vue'
 import ArrowLeftIcon from 'vue-material-design-icons/ArrowLeft.vue'
 import TrashCanOutlineIcon from 'vue-material-design-icons/TrashCanOutline.vue'
 import { type IconProps } from './types'
-import { ref, type Component } from 'vue'
+import { type Component, shallowRef } from 'vue'
 
 const { iconString, iconColor, text, hoverColor } = defineProps<IconProps>()
 
-const icon = ref<Component | string>('')
+const icon = shallowRef<Component | string | null>(null)
 
 if (iconString === 'menu') {
   icon.value = MenuIcon

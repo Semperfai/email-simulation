@@ -1,7 +1,8 @@
 export interface IconProps {
   iconString: string
-  iconColor: string
-  iconSize: number
+  iconColor?: string
+  iconSize?: number
   text: string
-  hoverColor: string
+  hoverColor?: string
+  bebra?: string
 }
