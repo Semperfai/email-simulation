@@ -12,7 +12,7 @@
             :size="19"
             fillColor="#636363"
           />
-          <StarOutlineIcon :size="17" fillColor="#636363" class="ml-4" />
+          <star-outline-icon :size="17" fillColor="#636363" class="ml-4" />
         </div>
 
         <div class="flex items-center w-full">
@@ -23,13 +23,12 @@
                   {{ from }}
                 </div>
                 <div class="flex items-center justify-between">
-                  <div class="mr-1.5 text-sm font-semibold truncate-subject">
+                  <div class="mr-3.5 text-sm font-semibold truncate-subject">
                     {{ subject }}
                   </div>
-                  <div class="text-sm text-gray-500 truncate-body pr-2">- {{ body }}...</div>
+                  <div class="text-sm text-gray-500 truncate-body pr-4">{{ body }}...</div>
                 </div>
               </div>
-
               <div class="text-right truncate mr-4 w-full text-xs font-semibold">{{ time }}</div>
             </div>
           </router-link>
@@ -39,7 +38,6 @@
   </div>
 </template>
 
-<style lang="scss" scoped></style>
 <script setup lang="ts">
 import CheckboxOutlineIcon from 'vue-material-design-icons/CheckboxOutline.vue'
 import CheckboxBlankOutlineIcon from 'vue-material-design-icons/CheckboxBlankOutline.vue'
@@ -50,3 +48,26 @@ const { id, from, subject, body, time } = defineProps<MessageRowProps>()
 
 const isSelected = ref<boolean>(false)
 </script>
+
+<style lang="scss" scoped>
+#MessageRow {
+  .truncate-from {
+    width: 11rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .truncate-subject {
+    max-width: 13rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .truncate-body {
+    max-width: 25rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}
+</style>

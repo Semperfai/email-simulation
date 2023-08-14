@@ -10,7 +10,9 @@
           text="Main Menu"
           class="-ml-2 mr-2"
         />
-        <img width="70" class="md:w-[70px] w-[40px]" src="imgs/email-logo.png" alt="logo" />
+        <router-link to="/email">
+          <img width="70" class="md:w-[70px] w-[40px]" src="/imgs/email-logo.png" alt="logo" />
+        </router-link>
       </div>
       <div class="flex w-full md:justify-between justify-center ml-4">
         <div
@@ -101,16 +103,16 @@
       <!-- body-changes -->
       <div class="m-4">
         <div class="w-6 h-6 flex justify-center mb-7">
-          <img class="object-contain cursor-pointer" src="imgs/calendar.png" alt="calendar" />
+          <img class="object-contain cursor-pointer" src="/imgs/calendar.png" alt="calendar" />
         </div>
         <div class="w-6 h-6 flex justify-center mb-7">
-          <img class="object-contain cursor-pointer" src="imgs/contacts.png" alt="contacts" />
+          <img class="object-contain cursor-pointer" src="/imgs/contacts.png" alt="contacts" />
         </div>
         <div class="w-6 h-6 flex justify-center mb-7">
-          <img class="object-contain cursor-pointer" src="imgs/tasks.png" alt="tasks" />
+          <img class="object-contain cursor-pointer" src="/imgs/tasks.png" alt="tasks" />
         </div>
         <div class="w-6 h-6 flex justify-center mb-7">
-          <img class="object-contain cursor-pointer" src="imgs/keep.png" alt="keep" />
+          <img class="object-contain cursor-pointer" src="/imgs/keep.png" alt="keep" />
         </div>
         <div class="w-6 flex mb-7 border border-gray-300" />
 

@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from '../pages/HomePage.vue'
+import MessagePage from '../pages/MessagePage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -13,6 +14,10 @@ const router = createRouter({
           path: '',
           name: 'home-page',
           component: HomePage
+        },
+        {
+          path: 'message/:id',
+          component: MessagePage
         }
       ]
     }

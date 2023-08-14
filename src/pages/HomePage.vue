@@ -18,6 +18,8 @@
         from="testmail@mail.com"
         subject="Test 1 row rwow oor"
         body="Body of message lalalalalal"
+        time="Jun 20 15:15"
+        id="1"
       />
     </div>
   </div>
