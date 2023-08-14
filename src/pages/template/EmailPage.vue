@@ -54,8 +54,8 @@
     <div class="flex w-full justify-between">
       <div id="SideMenu" class="side-menu">
         <div
-          @click="newMessageOpen = true"
-          class="flex items-center justify-center bg-sky-200 w-36 h-5 mt-2 rounded-2xl ml-2 p-5 md:p-7 cursor-pointer"
+          @click="newMessageOpen = !newMessageOpen"
+          class="flex items-center justify-center bg-sky-200 w-36 h-5 mt-2 rounded-2xl ml-2 p-3 md:p-5 cursor-pointer"
         >
           <pencil-outline-icon :size="25" class="mr-4" />
           <span class="text-sm">Compose</span>
@@ -68,7 +68,7 @@
               <p class="text-sm pl-4 font-semibold">Inbox</p>
             </div>
 
-            <p class="grid place-items-center text-sm">13</p>
+            <p class="grid place-items-center ml-2 text-sm">13</p>
           </div>
         </router-link>
         <div class="flex side-menu-item justify-between px-6 py-1.5">
@@ -174,8 +174,6 @@ import SendOutlineIcon from 'vue-material-design-icons/SendOutline.vue'
 import FileOutlineIcon from 'vue-material-design-icons/FileOutline.vue'
 import PlusIcon from 'vue-material-design-icons/Plus.vue'
 import CloseIcon from 'vue-material-design-icons/Close.vue'
-import BaseIcon from '@/components/BaseIcon/BaseIcon.vue'
-import BaseProfile from '@/components/BaseProfile/BaseProfile.vue'
 import { ref } from 'vue'
 
 const newMessageOpen = ref<boolean>(false)
@@ -197,11 +195,11 @@ const newMessageOpen = ref<boolean>(false)
   }
 
   .side-menu {
-    width: 35%;
+    width: 200px;
   }
 
   .side-menu-item {
-    width: 80%;
+    width: 90%;
   }
 }
 </style>

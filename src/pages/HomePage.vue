@@ -1,5 +1,19 @@
-<script setup lang="ts"></script>
-
 <template>
-  <h1 class="text-red-500">HOME PAGE</h1>
+  <div id="HomePage" class="w-full bg-white ml-5 rounded-t-xl h-full shadow-sm">
+    <div class="border-b">
+      <div class="flex items-center justify-between px-4 my-3">
+        <base-icon
+          class="-m-2 -ml-2.5"
+          iconString="trash"
+          :iconSize="19"
+          iconColor="#636363"
+          text="Delete selected"
+          hoverColor="hover:bg-gray-100"
+        />
+        <div class="text-xs text-gray-500">1-50 of 153</div>
+      </div>
+    </div>
+  </div>
 </template>
+
+<script setup lang="ts"></script>
