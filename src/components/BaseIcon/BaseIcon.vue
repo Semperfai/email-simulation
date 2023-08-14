@@ -1,7 +1,19 @@
 <template>
   <div id="BaseIcon">
-    <div class="flex items-center justify-center rounded-full cursor-pointer w-10 h-10">
+    <div
+      class="flex items-center justify-center rounded-full cursor-pointer w-10 h-10 transition-all duration-200 ease-in"
+      :class="hoverColor"
+      :data-tooltip-target="`tooltip-no-arrow-${iconString}`"
+      data-tooltip-placement="bottom"
+    >
       <component :is="icon" :size="iconSize" :fillColor="iconColor" />
+    </div>
+    <div
+      :id="`tooltip-no-arrow-${iconString}`"
+      role="tooltip"
+      class="inline-block absolute invisible text-xs z-10 py-1 px-2 font-medium text-white rounded-sm shadow-sm opacity-0 tooltip dark:bg-gray-600 delay-150"
+    >
+      {{ text }}
     </div>
   </div>
 </template>
@@ -18,7 +30,7 @@ import TrashCanOutlineIcon from 'vue-material-design-icons/TrashCanOutline.vue'
 import { type IconProps } from './types'
 import { ref, type Component } from 'vue'
 
-const { iconColor, iconSize, iconString } = defineProps<IconProps>()
+const { iconString, iconColor, text, hoverColor } = defineProps<IconProps>()
 
 const icon = ref<Component | string>('')
 
