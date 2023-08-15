@@ -23,16 +23,18 @@ export const useUserStore = defineStore('user', {
   }),
   actions: {
     async getUserDetailsFromGoogle(data) {
-      const res = await axios.post('/api/google-login', {
-        token: data?.credentials
+      debugger
+      const res = await axios.post('api/google-login', {
+        token: data.credential
       })
-      //todo change family dates
+
       this.$state.sub = res.data.sub
       this.$state.email = res.data.email
       this.$state.picture = res.data.picture
-      this.$state.firstName = res.data.firstName
-      this.$state.lastName = res.data.lastName
-    }
-  },
-  persist: true
+      this.$state.firstName = res.data.given_name
+      this.$state.lastName = res.data.family_name
+      this.$state.lastName = res.data.family_name
+    },
+    persist: true
+  }
 })

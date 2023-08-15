@@ -18,6 +18,7 @@ const router = useRouter()
 const userStore = useUserStore()
 
 const callback = async (response) => {
+  debugger
   await userStore.getUserDetailsFromGoogle(response)
   setTimeout(() => {
     router.push('/email')
