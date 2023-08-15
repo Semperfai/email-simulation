@@ -1,6 +1,7 @@
 <template>
   <div id="LoginPage" class="grid h-screen place-items-center">
-    <div>
+    <div class="flex flex-col items-center justify-center">
+      {{ userStore }}
       <img src="/imgs/email-logo.png" alt="email-login" />
       <div class="flex justify-center m-5">
         <GoogleLogin :callback="callback" />
@@ -10,15 +11,16 @@
 </template>
 
 <script setup lang="ts">
-import axios from 'axios'
+import { useUserStore } from '@/stores/user-store'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+const userStore = useUserStore()
 
 const callback = async (response) => {
-  let res = await axios('http://localhost:4001/api/google-login', {
-    token: response.credential
-  })
-
-  console.log(res)
+  await userStore.getUserDetailsFromGoogle(response)
+  setTimeout(() => {
+    router.push('/email')
+  }, 300)
 }
 </script>
-
-<style lang="scss" scoped></style>
