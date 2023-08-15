@@ -22,23 +22,23 @@
             class="ml-3"
           />
         </div>
-        <div class="text-xs text-gray-500">1-50 of 153</div>
+        <p class="text-xs text-gray-500">1-50 of 153</p>
       </div>
     </div>
 
-    <div class="w-full text-xl ml-20 font-light pt-5">Subject</div>
+    <p class="w-full text-xl ml-20 font-light pt-5">Subject</p>
 
     <div class="w-full flex">
       <img class="rounded-full mt-8 mx-5 w-10 h-10" src="https://via.placeholder.com/45" />
       <div class="w-full my-4 mx-0.5">
         <div class="font-semibold text-sm mt-4 mb-4">
           <div class="w-full flex justify-between items-center">
-            <div>bebra@gmail.com</div>
-            <div class="mr-5 text-xs font-normal">12.01.21</div>
+            <p>bebra@gmail.com</p>
+            <p class="mr-5 text-xs font-normal">12.01.21</p>
           </div>
           <span class="text-xs text-gray-500 font-normal">to me</span>
         </div>
-        <div>
+        <p>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis necessitatibus odit dolor
           nulla nisi. Voluptatibus dolor vero, impedit unde libero blanditiis quibusdam, ipsa in
           odio corrupti quam facilis eligendi itaque? Dicta esse, et, magni ex praesentium autem
@@ -65,7 +65,7 @@
           in illum repudiandae soluta. Iure corrupti odio ipsum quo. Ipsa quidem, excepturi ad
           veritatis illum quod omnis eius, nisi ratione magnam placeat fuga eos eveniet autem cumque
           nemo facilis corrupti, ut ullam beatae. Asperiores!
-        </div>
+        </p>
       </div>
     </div>
   </div>
@@ -74,12 +74,22 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { type IEmail } from '@/shared/types/email'
+import { type EmailId, type IEmail } from '@/shared/types/email'
 
 const route = useRoute()
 const router = useRouter()
 
-const email = ref<IEmail>({})
+const email = ref<IEmail>({
+  id: -1 as EmailId,
+  body: '',
+  createdAt: '',
+  firstName: '',
+  fromEmail: '',
+  lastName: '',
+  subject: '',
+  hasViewed: false,
+  toEmail: ''
+})
 </script>
 
 <style lang="scss" scoped></style>
