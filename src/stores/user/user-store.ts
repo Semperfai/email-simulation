@@ -2,10 +2,12 @@ import axios from 'axios'
 import moment from 'moment'
 import { v4 as uuid } from 'uuid'
 import type { IGoogleLoginCallbackData } from '@/shared/types/google-login-callback'
-import { db } from '@/firebase-init'
+import { db } from '@/shared/config/firebase-init'
 import { collection, query, where, doc, onSnapshot, setDoc } from 'firebase/firestore'
 import { defineStore } from 'pinia'
-import { type IUserStore, type IUserEmails, type ISendEmailData } from './types'
+import { type IUserStore, type IUserEmails } from './types'
+import { type ISendEmailData } from '@/shared/types/email'
+
 axios.defaults.baseURL = 'http://localhost:4001/'
 
 export const useUserStore = defineStore('user', {

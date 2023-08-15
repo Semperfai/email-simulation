@@ -136,6 +136,7 @@
       <div class="relative flex items-center px-3.5 py-2">
         <p class="text-sm text-gray-700">To:</p>
         <input
+          v-model="emailData.toEmail"
           class="w-full h-6 border-transparent border-none focus:ring-0 outline-none"
           type="text"
         />
@@ -144,6 +145,7 @@
       <div class="relative flex items-center px-3.5 py-2">
         <p class="text-sm text-gray-700">Subject:</p>
         <input
+          v-model="emailData.subject"
           class="w-full h-6 border-transparent border-none focus:ring-0 outline-none"
           type="text"
         />
@@ -151,6 +153,7 @@
       </div>
       <div class="m-1">
         <textarea
+          v-model="emailData.body"
           style="resize: none"
           class="w-full border-transparent border-none focus:ring-0 outline-none"
           rows="14"
@@ -158,6 +161,7 @@
       </div>
       <div class="p-4 mt-5">
         <button
+          @click="sendEmail"
           class="bg-blue-700 hover:bg-blue-600 text-white text-sm font-bold py-2 px-4 rounded-full"
         >
           Send message
@@ -176,9 +180,34 @@ import SendOutlineIcon from 'vue-material-design-icons/SendOutline.vue'
 import FileOutlineIcon from 'vue-material-design-icons/FileOutline.vue'
 import PlusIcon from 'vue-material-design-icons/Plus.vue'
 import CloseIcon from 'vue-material-design-icons/Close.vue'
-import { ref } from 'vue'
+import { type ISendEmailData } from '@/shared/types/email'
+import { useUserStore } from '@/stores/user/user-store'
+import { reactive, ref } from 'vue'
+import { emailValidator } from '@/shared/lib/helpers/emailValidator'
 
+const userStore = useUserStore()
+
+const emailData = reactive<ISendEmailData>({
+  toEmail: '',
+  subject: '',
+  body: ''
+})
 const newMessageOpen = ref<boolean>(false)
+
+const sendEmail = async (): Promise<void> => {
+  emailValidator(emailData.toEmail)
+
+  await userStore.sendEmail({
+    toEmail: emailData.toEmail,
+    subject: emailData.subject,
+    body: emailData.body
+  })
+
+  newMessageOpen.value = false
+  emailData.toEmail = ''
+  emailData.subject = ''
+  emailData.body = ''
+}
 </script>
 <style lang="scss">
 #EmailPage {

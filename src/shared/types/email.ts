@@ -11,3 +11,9 @@ export interface IEmail {
   hasViewed: boolean
   toEmail: Email
 }
+
+export interface ISendEmailData {
+  toEmail: Email
+  subject: string
+  body: string
+}
