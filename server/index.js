@@ -7,7 +7,7 @@ const bodyParser = require('body-parser')
 const { OAuth2Client } = require('google-auth-library')
 
 const client = new OAuth2Client(
-  '565535016155-qcvpltqcqm7l8fl6f5puo9gmmsaqqm0r.apps.googleusercontent.com'
+  '565535016155-s2ot677uvn5cvfbfor99ukvtaijtjgng.apps.googleusercontent.com'
 )
 
 app.use(bodyParser.json())

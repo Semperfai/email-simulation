@@ -20,7 +20,7 @@ components.forEach((c) => {
 app.use(pinia)
 app.use(router)
 app.use(vue3GoogleLogin, {
-  clientId: '565535016155-qcvpltqcqm7l8fl6f5puo9gmmsaqqm0r.apps.googleusercontent.com'
+  clientId: '565535016155-s2ot677uvn5cvfbfor99ukvtaijtjgng.apps.googleusercontent.com'
 })
 
 app.mount('#app')
