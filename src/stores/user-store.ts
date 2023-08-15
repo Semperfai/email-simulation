@@ -32,6 +32,14 @@ export const useUserStore = defineStore('user', {
       this.$state.picture = res.data.picture
       this.$state.firstName = res.data.given_name
       this.$state.lastName = res.data.family_name
+    },
+    clearUser() {
+      this.$state.sub = ''
+      this.$state.email = ''
+      this.$state.picture = ''
+      this.$state.firstName = ''
+      this.$state.lastName = ''
+      this.$state.emails = []
     }
   },
   persist: true

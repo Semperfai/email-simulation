@@ -2,6 +2,7 @@ import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 import HomePage from '../pages/HomePage.vue'
 import MessagePage from '../pages/MessagePage.vue'
 import LoginPage from '../pages/LoginPage.vue'
+import { useUserStore } from '@/stores/user-store'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -10,6 +11,9 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/email',
+    beforeEnter: (to, from, next) => {
+      useUserStore().email ? next() : next('/')
+    },
     name: 'email',
     component: () => import('../pages/template/EmailPage.vue'),
     children: [

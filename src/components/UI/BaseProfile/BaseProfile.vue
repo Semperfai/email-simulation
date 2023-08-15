@@ -4,7 +4,7 @@
       @click="openMenu = !openMenu"
       id="tooltip-trigger-user"
       class="rounded-full w-8 cursor-pointer"
-      src="https://via.placeholder.com/40"
+      :src="userStore.picture"
       alt="avatar"
     />
     <div
@@ -14,8 +14,8 @@
       class="inline-block absolute invisible text-xs z-10 py-1 px-2 font-medium text-white rounded-sm shadow-sm tooltip bg-gray-600"
     >
       <div>Email Account</div>
-      <div class="text-gray-300">Igor Dorin</div>
-      <div class="text-gray-300">testmail@gmail.com</div>
+      <div class="text-gray-300">{{ userStore.firstName }} {{ userStore.lastName }}</div>
+      <div class="text-gray-300">{{ userStore.email }}</div>
     </div>
     <div
       v-show="openMenu"
@@ -32,6 +32,7 @@
       </div>
       <div class="flex justify-center my-5">
         <button
+          @click="logout"
           class="bg-transparent text-xs hover:bg-gray-100 text-gray-600 font-semibold py-2 px-4 border border-gray-300 rounded"
         >
           Sign out of Email
@@ -44,10 +45,18 @@
 import { onMounted, ref } from 'vue'
 import { Tooltip, type TooltipOptions } from 'flowbite'
 import { useUserStore } from '@/stores/user-store'
+import { useRouter } from 'vue-router'
 
 const userStore = useUserStore()
-console.log(userStore)
 const openMenu = ref<boolean>(false)
+const router = useRouter()
+
+const logout = () => {
+  userStore.clearUser()
+  setTimeout(() => {
+    router.push('/')
+  }, 200)
+}
 
 onMounted(() => {
   const $targetEl = document.getElementById(`tooltip-content-user`) as HTMLElement

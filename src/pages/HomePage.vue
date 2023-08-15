@@ -16,6 +16,7 @@
     <div>
       <message-row
         from="testmail@mail.com"
+        :hasViewed="false"
         subject="Test 1 row rwow oor"
         body="Body of message lalalalalal"
         time="Jun 20 15:15"

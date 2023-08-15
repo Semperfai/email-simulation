@@ -44,7 +44,7 @@ import CheckboxBlankOutlineIcon from 'vue-material-design-icons/CheckboxBlankOut
 import StarOutlineIcon from 'vue-material-design-icons/StarOutline.vue'
 import { toRefs, watch, ref } from 'vue'
 import { type MessageRowProps } from './types'
-const { id, from, subject, body, time } = defineProps<MessageRowProps>()
+const { id, from, subject, body, time, hasViewed } = defineProps<MessageRowProps>()
 
 const isSelected = ref<boolean>(false)
 </script>
