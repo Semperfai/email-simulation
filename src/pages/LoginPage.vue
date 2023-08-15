@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import { useUserStore } from '@/stores/user-store'
+import { useUserStore } from '@/stores/user/user-store'
 import { useRouter } from 'vue-router'
 import { type IGoogleLoginCallbackData } from '@/shared/types/google-login-callback'
 

@@ -2,7 +2,7 @@ import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 import HomePage from '../pages/HomePage.vue'
 import MessagePage from '../pages/MessagePage.vue'
 import LoginPage from '../pages/LoginPage.vue'
-import { useUserStore } from '@/stores/user-store'
+import { useUserStore } from '@/stores/user/user-store'
 
 const routes: Array<RouteRecordRaw> = [
   {

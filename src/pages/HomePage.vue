@@ -13,14 +13,14 @@
         <div class="text-xs text-gray-500">1-50 of 153</div>
       </div>
     </div>
-    <div>
+    <div v-for="email in userStore.emails" :key="email">
       <message-row
-        from="testmail@mail.com"
-        :hasViewed="false"
-        subject="Test 1 row rwow oor"
-        body="Body of message lalalalalal"
-        time="Jun 20 15:15"
-        id="1"
+        :from="email.firstName + ' ' + email.lastName"
+        :hasViewed="email.hasViewed"
+        :subject="email.subject"
+        :body="email.body"
+        :time="email.createdAt"
+        :id="email.id"
       />
     </div>
   </div>
@@ -28,4 +28,12 @@
 
 <script setup lang="ts">
 import MessageRow from '@/components/MessageRow/MessageRow.vue'
+import { useUserStore } from '@/stores/user/user-store'
+import { onMounted } from 'vue'
+
+const userStore = useUserStore()
+
+onMounted(() => {
+  userStore.getEmailsByEmailAddress()
+})
 </script>

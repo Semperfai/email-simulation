@@ -42,11 +42,20 @@
 import CheckboxOutlineIcon from 'vue-material-design-icons/CheckboxOutline.vue'
 import CheckboxBlankOutlineIcon from 'vue-material-design-icons/CheckboxBlankOutline.vue'
 import StarOutlineIcon from 'vue-material-design-icons/StarOutline.vue'
-import { toRefs, watch, ref } from 'vue'
+import { watch, ref } from 'vue'
 import { type MessageRowProps } from './types'
+
 const { id, from, subject, body, time, hasViewed } = defineProps<MessageRowProps>()
 
+const emit = defineEmits<{
+  selectedId: [{ id: string; value: boolean }]
+}>()
+
 const isSelected = ref<boolean>(false)
+
+watch(isSelected, (bool) => {
+  emit('selectedId', { id: id, value: bool })
+})
 </script>
 
 <style lang="scss" scoped>

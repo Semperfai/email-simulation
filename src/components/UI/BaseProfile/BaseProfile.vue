@@ -44,7 +44,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { Tooltip, type TooltipOptions } from 'flowbite'
-import { useUserStore } from '@/stores/user-store'
+import { useUserStore } from '@/stores/user/user-store'
 import { useRouter } from 'vue-router'
 
 const userStore = useUserStore()
