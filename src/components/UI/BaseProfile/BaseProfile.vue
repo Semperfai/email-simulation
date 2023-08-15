@@ -22,11 +22,13 @@
       class="absolute z-10 w-80 right-2 bg-white top-14 rounded-lg custom-shadow"
     >
       <div class="w-full flex justify-center">
-        <img class="rounded-full w-20 mt-4" src="https://via.placeholder.com/40" />
+        <img class="rounded-full w-20 mt-4" :src="userStore.picture" />
       </div>
-      <div class="text-gray-700 w-full flex justify-center mt-2 text-lg">Igor Dorin</div>
+      <div class="text-gray-700 w-full flex justify-center mt-2 text-lg">
+        {{ userStore.firstName }} {{ userStore.lastName }}
+      </div>
       <div class="text-gray-700 w-full flex justify-center text-sm pb-4 border-b">
-        testmail@gmail.com
+        {{ userStore.email }}
       </div>
       <div class="flex justify-center my-5">
         <button
@@ -41,7 +43,10 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { Tooltip, type TooltipOptions } from 'flowbite'
+import { useUserStore } from '@/stores/user-store'
 
+const userStore = useUserStore()
+console.log(userStore)
 const openMenu = ref<boolean>(false)
 
 onMounted(() => {

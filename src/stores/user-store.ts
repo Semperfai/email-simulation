@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
+import type { IGoogleLoginCallbackData } from '@/shared/types/google-login-callback'
 
 interface IUserStore {
   sub: string
@@ -22,19 +23,16 @@ export const useUserStore = defineStore('user', {
     emails: []
   }),
   actions: {
-    async getUserDetailsFromGoogle(data) {
-      debugger
+    async getUserDetailsFromGoogle(data: IGoogleLoginCallbackData) {
       const res = await axios.post('api/google-login', {
         token: data.credential
       })
-
       this.$state.sub = res.data.sub
       this.$state.email = res.data.email
       this.$state.picture = res.data.picture
       this.$state.firstName = res.data.given_name
       this.$state.lastName = res.data.family_name
-      this.$state.lastName = res.data.family_name
-    },
-    persist: true
-  }
+    }
+  },
+  persist: true
 })
