@@ -13,7 +13,7 @@ const client = new OAuth2Client(
 app.use(bodyParser.json())
 app.use(cors())
 
-app.post('/api/google-login', async (req, res) => {
+app.post('http://localhost:4001/api/google-login', async (req, res) => {
   const ticket = await client.verifyIdToken({
     idToken: req.body.tokenId
   })
