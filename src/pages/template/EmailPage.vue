@@ -196,7 +196,6 @@ const newMessageOpen = ref<boolean>(false)
 
 const sendEmail = async (): Promise<void> => {
   emailValidator(emailData.toEmail)
-
   await userStore.sendEmail({
     toEmail: emailData.toEmail,
     subject: emailData.subject,

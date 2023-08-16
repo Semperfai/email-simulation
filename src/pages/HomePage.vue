@@ -13,7 +13,7 @@
         <div class="text-xs text-gray-500">1-50 of 153</div>
       </div>
     </div>
-    <div v-for="email in userStore.emails" :key="email">
+    <div v-for="email in userStore.emails" :key="email.id">
       <message-row
         :from="email.firstName + ' ' + email.lastName"
         :hasViewed="email.hasViewed"
