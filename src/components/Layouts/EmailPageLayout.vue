@@ -11,12 +11,3 @@
     <slot name="message-section" />
   </div>
 </template>
-<script setup lang="ts">
-defineSlots<{
-  default(): any
-  topMenu(): any
-  sideMenu(): any
-  toolbar(): any
-  messageSection(): any
-}>()
-</script>
