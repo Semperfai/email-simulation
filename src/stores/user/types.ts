@@ -18,14 +18,3 @@ export interface IUserEmails {
   hasViewed: boolean
   createdAt: DateIso
 }
-
-// export interface ISendEmailData {
-//   firstName: string
-//   lastName: string
-//   fromEmail: Email
-//   toEmail: Email
-//   subject: string
-//   body: string
-//   hasViewed: boolean
-//   createdAt: DateIso
-// }
