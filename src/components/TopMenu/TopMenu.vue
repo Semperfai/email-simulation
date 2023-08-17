@@ -14,7 +14,7 @@
       </router-link>
     </div>
     <div class="flex w-full md:justify-between justify-center ml-4">
-      <div class="input-width md:w-full w-[70%] bg-gray-200 flex items-center p-1 px-2 rounded-lg">
+      <div class="max-w-3xl md:w-full w-[70%] bg-gray-200 flex items-center p-1 px-2 rounded-lg">
         <base-icon
           iconString="magnify"
           iconColor="#636363"
@@ -51,5 +51,3 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts"></script>

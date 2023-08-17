@@ -1,5 +1,5 @@
 <template>
-  <div id="SideMenu" class="side-menu">
+  <div id="SideMenu" class="w-52">
     <div
       class="flex items-center justify-center bg-sky-200 w-36 h-5 mt-2 rounded-2xl ml-2 p-4 md:p-6 cursor-pointer"
     >
@@ -55,8 +55,8 @@ import { useUserStore } from '@/stores/user/user-store'
 const userStore = useUserStore()
 </script>
 
-<style lang="scss" scoped>
-.side-menu {
-  width: 200px;
+<style scoped>
+.side-menu-item {
+  @apply w-[90%];
 }
 </style>

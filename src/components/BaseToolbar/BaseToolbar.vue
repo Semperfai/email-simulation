@@ -23,5 +23,3 @@
 <script setup lang="ts">
 import PlusIcon from 'vue-material-design-icons/Plus.vue'
 </script>
-
-<style scoped></style>
