@@ -53,6 +53,7 @@ import { onMounted, ref } from 'vue'
 import { useUserStore } from '@/stores/user/user-store'
 import { useRoute, useRouter } from 'vue-router'
 import { type EmailId, type IEmail } from '@/shared/types/email'
+import moment from 'moment'
 
 const route = useRoute()
 const router = useRouter()
@@ -90,7 +91,7 @@ onMounted(async () => {
     email.value = {
       id: emailData.id,
       body: emailData.body,
-      createdAt: emailData.createdAt,
+      createdAt: moment(emailData.createdAt).format('MMM Do HH:mm'),
       firstName: emailData.firstName,
       fromEmail: emailData.fromEmail,
       lastName: emailData.lastName,
@@ -101,5 +102,3 @@ onMounted(async () => {
   }
 })
 </script>
-
-<style lang="scss" scoped></style>

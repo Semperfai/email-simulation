@@ -11,7 +11,8 @@ import {
   onSnapshot,
   setDoc,
   deleteDoc,
-  getDoc
+  getDoc,
+  orderBy
 } from 'firebase/firestore'
 import { defineStore } from 'pinia'
 import { type IUserStore, type IUserEmails } from './types'
@@ -46,7 +47,11 @@ export const useUserStore = defineStore('user', {
       }
     },
     async getEmailsByEmailAddress(): Promise<void> {
-      const q = query(collection(db, 'emails'), where('toEmail', '==', this.$state.email))
+      const q = query(
+        collection(db, 'emails'),
+        where('toEmail', '==', this.$state.email),
+        orderBy('createdAt', 'desc')
+      )
 
       onSnapshot(
         q,

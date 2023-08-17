@@ -70,7 +70,7 @@
               <p class="text-sm pl-4 font-semibold">Inbox</p>
             </div>
 
-            <p class="grid place-items-center ml-2 text-sm">13</p>
+            <p class="grid place-items-center ml-2 text-sm">{{ userStore.emails.length }}</p>
           </div>
         </router-link>
         <div class="flex side-menu-item justify-between px-6 py-1.5">
@@ -182,7 +182,7 @@ import PlusIcon from 'vue-material-design-icons/Plus.vue'
 import CloseIcon from 'vue-material-design-icons/Close.vue'
 import { type ISendEmailData } from '@/shared/types/email'
 import { useUserStore } from '@/stores/user/user-store'
-import { reactive, ref } from 'vue'
+import { onMounted, reactive, ref } from 'vue'
 import { emailValidator } from '@/shared/lib/helpers/emailValidator'
 
 const userStore = useUserStore()
@@ -207,6 +207,8 @@ const sendEmail = async (): Promise<void> => {
   emailData.subject = ''
   emailData.body = ''
 }
+
+onMounted(() => {})
 </script>
 <style lang="scss">
 #EmailPage {

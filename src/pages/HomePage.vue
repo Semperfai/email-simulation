@@ -36,7 +36,7 @@ import { onMounted, ref } from 'vue'
 
 const userStore = useUserStore()
 
-const emailsToDelete = ref<string[]>([])
+const emailsToDelete = ref<EmailId[]>([])
 
 const selectedId = (e: { id: EmailId; value: boolean }) => {
   if (!emailsToDelete.value.length) {
