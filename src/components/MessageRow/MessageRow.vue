@@ -44,17 +44,18 @@ import CheckboxBlankOutlineIcon from 'vue-material-design-icons/CheckboxBlankOut
 import StarOutlineIcon from 'vue-material-design-icons/StarOutline.vue'
 import { watch, ref } from 'vue'
 import { type MessageRowProps } from './types'
+import { type EmailId } from '@/shared/types/email'
 
 const { id, from, subject, body, time, hasViewed } = defineProps<MessageRowProps>()
 
 const emit = defineEmits<{
-  selectedId: [{ id: string; value: boolean }]
+  selectedId: [{ id: EmailId; value: boolean }]
 }>()
 
 const isSelected = ref<boolean>(false)
 
 watch(isSelected, (bool) => {
-  emit('selectedId', { id: id, value: bool })
+  emit('selectedId', { id: id as EmailId, value: bool })
 })
 </script>
 

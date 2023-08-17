@@ -14,6 +14,7 @@
           </router-link>
 
           <base-icon
+            @click="deleteEmail(email.id)"
             iconString="trash"
             :iconSize="19"
             iconColor="#636363"
@@ -26,46 +27,22 @@
       </div>
     </div>
 
-    <p class="w-full text-xl ml-20 font-light pt-5">Subject</p>
+    <p class="w-full text-base font-bold ml-20 pt-5">Subject</p>
+    <div class="w-full text-sm ml-20 font-light pt-2">
+      {{ email.subject }}
+    </div>
 
     <div class="w-full flex">
       <img class="rounded-full mt-8 mx-5 w-10 h-10" src="https://via.placeholder.com/45" />
       <div class="w-full my-4 mx-0.5">
         <div class="font-semibold text-sm mt-4 mb-4">
           <div class="w-full flex justify-between items-center">
-            <p>bebra@gmail.com</p>
-            <p class="mr-5 text-xs font-normal">12.01.21</p>
+            <p>{{ email.fromEmail }}</p>
+            <p class="mr-5 text-xs font-normal">{{ email.createdAt }}</p>
           </div>
           <span class="text-xs text-gray-500 font-normal">to me</span>
         </div>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis necessitatibus odit dolor
-          nulla nisi. Voluptatibus dolor vero, impedit unde libero blanditiis quibusdam, ipsa in
-          odio corrupti quam facilis eligendi itaque? Dicta esse, et, magni ex praesentium autem
-          nisi maxime recusandae minus earum, obcaecati veritatis. Dolores sequi iste quae dolor
-          eaque delectus quibusdam libero incidunt quaerat. Accusamus dolorem tenetur facere veniam!
-          Consequatur similique aliquam voluptatum temporibus molestias dolores inventore quis at
-          quo et autem ipsa vero, neque numquam in magni alias accusantium quibusdam maxime
-          praesentium debitis id illum amet. Dolore, voluptatem! Repellendus, aut placeat recusandae
-          ullam sequi quibusdam. Modi, sapiente recusandae? Ullam tenetur blanditiis possimus
-          reiciendis distinctio corrupti laboriosam id sequi accusantium deleniti? Cumque
-          necessitatibus perferendis, sapiente expedita nesciunt ratione harum! Dolorem labore non
-          id ratione aliquam eum laborum! Corrupti recusandae obcaecati maiores consequatur, earum
-          pariatur ea quo accusamus repellat dolorem deserunt iusto quis incidunt laboriosam, id
-          nesciunt voluptatum ratione cumque! Accusamus, eius expedita quis iste sit eos itaque
-          doloremque reprehenderit suscipit! Asperiores consectetur sunt veniam vel itaque. Officiis
-          eligendi est veritatis similique neque quia voluptatibus ipsum! Dolore eum voluptatem
-          dolorum? Deleniti autem consectetur maiores? Voluptatum iste praesentium atque accusamus,
-          cumque, animi quod esse aut repellat delectus quidem architecto natus. Esse, quia totam.
-          Repellendus eius, nemo tempora quia reprehenderit quaerat ipsa! At commodi itaque dolorum,
-          tempore, sit amet neque modi ipsum voluptatem aliquid vitae. Distinctio nesciunt sunt
-          perspiciatis, eius, sit velit labore eligendi sequi ullam fugiat dolores rerum, officia
-          explicabo quidem. Quidem enim corporis ullam ex nihil magni cupiditate placeat, provident
-          illum. Sint fugiat ea quam, vero quia sequi quos nihil mollitia ipsa at ab. Officiis natus
-          in illum repudiandae soluta. Iure corrupti odio ipsum quo. Ipsa quidem, excepturi ad
-          veritatis illum quod omnis eius, nisi ratione magnam placeat fuga eos eveniet autem cumque
-          nemo facilis corrupti, ut ullam beatae. Asperiores!
-        </p>
+        <p>{{ email.body }}</p>
       </div>
     </div>
   </div>
@@ -73,14 +50,16 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
+import { useUserStore } from '@/stores/user/user-store'
 import { useRoute, useRouter } from 'vue-router'
 import { type EmailId, type IEmail } from '@/shared/types/email'
 
 const route = useRoute()
 const router = useRouter()
+const userStore = useUserStore()
 
 const email = ref<IEmail>({
-  id: -1 as EmailId,
+  id: '' as EmailId,
   body: '',
   createdAt: '',
   firstName: '',
@@ -89,6 +68,37 @@ const email = ref<IEmail>({
   subject: '',
   hasViewed: false,
   toEmail: ''
+})
+
+const deleteEmail = async (id: EmailId) => {
+  const preventMessage = confirm('Are you sure you want to delete this email?')
+
+  if (preventMessage) {
+    await userStore.deleteEmail(id)
+  }
+
+  setTimeout(() => {
+    router.push('/email')
+  }, 200)
+}
+
+onMounted(async () => {
+  const routeId = route.params.id as EmailId
+  const emailData = await userStore.getEmailById(routeId)
+  if (emailData) {
+    await userStore.emailHasBeenViewed(emailData.id)
+    email.value = {
+      id: emailData.id,
+      body: emailData.body,
+      createdAt: emailData.createdAt,
+      firstName: emailData.firstName,
+      fromEmail: emailData.fromEmail,
+      lastName: emailData.lastName,
+      subject: emailData.subject,
+      hasViewed: emailData.hasViewed,
+      toEmail: emailData.toEmail
+    }
+  }
 })
 </script>
 

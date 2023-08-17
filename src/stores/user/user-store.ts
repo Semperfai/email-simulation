@@ -3,10 +3,19 @@ import moment from 'moment'
 import { v4 as uuid } from 'uuid'
 import type { IGoogleLoginCallbackData } from '@/shared/types/google-login-callback'
 import { db } from '@/shared/config/firebase-init'
-import { collection, query, where, doc, onSnapshot, setDoc } from 'firebase/firestore'
+import {
+  collection,
+  query,
+  where,
+  doc,
+  onSnapshot,
+  setDoc,
+  deleteDoc,
+  getDoc
+} from 'firebase/firestore'
 import { defineStore } from 'pinia'
 import { type IUserStore, type IUserEmails } from './types'
-import { type ISendEmailData } from '@/shared/types/email'
+import { type ISendEmailData, type EmailId, type IEmail } from '@/shared/types/email'
 
 axios.defaults.baseURL = 'http://localhost:4001/'
 
@@ -37,10 +46,7 @@ export const useUserStore = defineStore('user', {
       }
     },
     async getEmailsByEmailAddress(): Promise<void> {
-      const q = query(
-        collection(db, 'emails'),
-        where('toEmail', '==', 'svyatoslavmatyuha@gmail.com')
-      )
+      const q = query(collection(db, 'emails'), where('toEmail', '==', this.$state.email))
 
       onSnapshot(
         q,
@@ -76,6 +82,49 @@ export const useUserStore = defineStore('user', {
       this.$state.firstName = res.data.given_name
       this.$state.lastName = res.data.family_name
     },
+    async deleteEmail(id: EmailId): Promise<void> {
+      try {
+        await deleteDoc(doc(db, 'emails', id))
+      } catch (e: Error | unknown) {
+        console.log(e)
+      }
+    },
+
+    async getEmailById(id: EmailId): Promise<IEmail | undefined> {
+      const docRef = doc(db, 'emails', id)
+      const docSnap = await getDoc(docRef)
+
+      if (docSnap.exists()) {
+        return {
+          id: id,
+          body: docSnap.data().body,
+          createdAt: moment(docSnap.data().createdAt).format('MMM D HH:mm'),
+          firstName: docSnap.data().firstName,
+          fromEmail: docSnap.data().fromEmail,
+          lastName: docSnap.data().lastName,
+          subject: docSnap.data().subject,
+          toEmail: docSnap.data().toEmail,
+          hasViewed: docSnap.data().hasViewed
+        }
+      } else {
+        console.log('No such document!')
+      }
+    },
+
+    async emailHasBeenViewed(id: EmailId): Promise<void> {
+      try {
+        await setDoc(
+          doc(db, 'emails/' + id),
+          {
+            hasViewed: true
+          },
+          { merge: true }
+        )
+      } catch (error) {
+        console.log(error)
+      }
+    },
+
     clearUser() {
       this.$state.sub = ''
       this.$state.email = ''
