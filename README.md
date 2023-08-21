@@ -33,3 +33,6 @@ npm i
 
 npm run watch
 ```
+# Application Images
+<img width="1219" alt="Screenshot" src="https://res.cloudinary.com/dnenvhtxp/image/upload/v1692610870/email-simulation/Screenshot_2023-08-21_at_12.39.39_epkjaf.png">
+<img width="1219" alt="Screenshot" src="https://res.cloudinary.com/dnenvhtxp/image/upload/v1692610870/email-simulation/Screenshot_2023-08-21_at_12.40.40_qq6bsi.png">
